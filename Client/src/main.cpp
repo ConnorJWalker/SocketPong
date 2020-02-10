@@ -1,5 +1,6 @@
 #include <string.h>
 #include <iostream>
+#include "application/application.h"
 
 int main(int argc, char** argv) {
     bool multiplayer = true, sameKeyboard = true;
@@ -16,6 +17,8 @@ int main(int argc, char** argv) {
 
     // Todo: replace with application class declaration
     std::cout << "Multiplayer: " << multiplayer << " Same KeyBoard: " << sameKeyboard << std::endl;
+    Application app;
+    app.run();
 
     return 0;
 }
