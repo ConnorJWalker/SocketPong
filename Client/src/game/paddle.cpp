@@ -17,3 +17,7 @@ void Paddle::init(sf::Vector2u windowSize) {
 void Paddle::render(sf::RenderWindow& window) {
     window.draw(body);
 }
+
+void Paddle::move(Direction direction) {
+    body.move(0.f, (float)direction * speed);
+}

@@ -20,8 +20,25 @@ void Application::handleEvents() {
 
         if (event.type == sf::Event::KeyPressed) {
             sf::Keyboard::Key key = event.key.code;
-            if (key == sf::Keyboard::Key::Escape) {
+            switch (key)
+            {
+            case sf::Keyboard::Key::Escape:
                 window.close();
+                break;
+            case sf::Keyboard::Key::W:
+                leftPaddle.move(Direction::Up);
+                break;
+            case sf::Keyboard::Key::S:
+                leftPaddle.move(Direction::Down);
+                break;
+            case sf::Keyboard::Key::Up:
+                rightPaddle.move(Direction::Up);
+                break;
+            case sf::Keyboard::Key::Down:
+                rightPaddle.move(Direction::Down);
+                break;
+            default:
+                break;
             }
         }
     }
