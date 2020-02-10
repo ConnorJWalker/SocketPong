@@ -25,21 +25,25 @@ void Application::handleEvents() {
             case sf::Keyboard::Key::Escape:
                 window.close();
                 break;
-            case sf::Keyboard::Key::W:
-                leftPaddle.move(Direction::Up);
-                break;
-            case sf::Keyboard::Key::S:
-                leftPaddle.move(Direction::Down);
-                break;
-            case sf::Keyboard::Key::Up:
-                rightPaddle.move(Direction::Up);
-                break;
-            case sf::Keyboard::Key::Down:
-                rightPaddle.move(Direction::Down);
-                break;
-            default:
-                break;
             }
+        }
+
+        // Handle user input, must be seperate if statements to allow more than
+        // one action to be processed at a time
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
+            leftPaddle.move(Direction::Up);
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
+            leftPaddle.move(Direction::Down);
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
+            rightPaddle.move(Direction::Up);
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
+            rightPaddle.move(Direction::Down);
         }
     }
 }
