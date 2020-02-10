@@ -1,0 +1,8 @@
+# Ignore Cmake Files
+Client/CMakeFiles
+Client/cmake_install.cmake
+Client/CMakeCache.txt
+Client/Makefile
+
+# Ignore executables
+Client/pong
