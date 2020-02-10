@@ -1,24 +1,21 @@
-#include <SFML/Graphics.hpp>
+#include <string.h>
+#include <iostream>
 
-int main()
-{
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
+int main(int argc, char** argv) {
+    bool multiplayer = true, sameKeyboard = true;
+    
+    if (argc == 1) {
+        std::cout << "No arguments entered, starting multiplayer same keyboard" << std::endl;
+    } else {
+        for (size_t i = 0; i < argc; i++) {
+            if (strcmp(argv[i], "-s") == 0) {
+                sameKeyboard = false;
+            }
         }
-
-        window.clear();
-        window.draw(shape);
-        window.display();
     }
+
+    // Todo: replace with application class declaration
+    std::cout << "Multiplayer: " << multiplayer << " Same KeyBoard: " << sameKeyboard << std::endl;
 
     return 0;
 }
