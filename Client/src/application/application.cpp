@@ -1,10 +1,13 @@
 #include "application.h"
 
-Application::Application() : window(sf::VideoMode(720, 480), "Pong", sf::Style::Close) {}
+Application::Application() : window(sf::VideoMode(720, 480), "Pong", sf::Style::Close),
+    leftPaddle(PaddleSide::Left, window.getSize()),
+    rightPaddle(PaddleSide::Right, window.getSize()) {}
 
 void Application::run() {
     while (window.isOpen()) {
         handleEvents();
+        render();
     }
 }
 
@@ -22,4 +25,13 @@ void Application::handleEvents() {
             }
         }
     }
+}
+
+void Application::render() {
+    window.clear();
+    
+    leftPaddle.render(window);
+    rightPaddle.render(window);
+
+    window.display();
 }
