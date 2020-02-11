@@ -4,13 +4,16 @@ Application::Application() :
     window(sf::VideoMode(720, 480), "Pong", sf::Style::Close),
     leftPaddle(PaddleSide::Left, window.getSize()),
     rightPaddle(PaddleSide::Right, window.getSize()),
-    ui(&leftScore, &rightScore, window.getSize()) {}
+    ui(&leftScore, &rightScore, &fps, window.getSize()) {}
 
 void Application::run() {
     while (window.isOpen()) {
         deltaTime = deltaClock.restart();
+        
         handleEvents();
         render();
+
+        fps = 1.f / deltaTime.asSeconds();
     }
 }
 
@@ -27,6 +30,9 @@ void Application::handleEvents() {
             {
             case sf::Keyboard::Key::Escape:
                 window.close();
+                break;
+            case sf::Keyboard::Key::Space:
+                showFramerate = !showFramerate;
                 break;
             }
         }
@@ -57,7 +63,7 @@ void Application::render() {
     
     leftPaddle.render(window);
     rightPaddle.render(window);
-    ui.render(window);
+    ui.render(window, showFramerate);
 
     window.display();
 }

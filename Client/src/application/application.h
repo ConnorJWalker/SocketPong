@@ -17,6 +17,9 @@ private:
 
     sf::Clock deltaClock;
     sf::Time deltaTime;
+
+    float fps;
+    bool showFramerate = false;
 // Methods
 private:
     void handleEvents();
