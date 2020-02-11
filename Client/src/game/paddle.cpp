@@ -18,6 +18,6 @@ void Paddle::render(sf::RenderWindow& window) {
     window.draw(body);
 }
 
-void Paddle::move(Direction direction) {
-    body.move(0.f, (float)direction * speed);
+void Paddle::move(Direction direction, sf::Time deltaTime) {
+    body.move(0.f, (float)direction * velocity * deltaTime.asSeconds());
 }

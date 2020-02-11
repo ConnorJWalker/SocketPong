@@ -14,6 +14,9 @@ private:
 
     int leftScore = 0;
     int rightScore = 0;
+
+    sf::Clock deltaClock;
+    sf::Time deltaTime;
 // Methods
 private:
     void handleEvents();

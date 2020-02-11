@@ -15,7 +15,7 @@ private:
     PaddleSide side;
     sf::RectangleShape body;
 
-    const float speed = 3.f;
+    const float velocity = 300.f;
 
 // Methods
 private:
@@ -24,5 +24,5 @@ private:
 public:
     Paddle(PaddleSide side, sf::Vector2u windowSize);
     void render(sf::RenderWindow& window);
-    void move(Direction direction);
+    void move(Direction direction, sf::Time deltaTime);
 };

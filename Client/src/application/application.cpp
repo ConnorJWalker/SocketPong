@@ -8,6 +8,7 @@ Application::Application() :
 
 void Application::run() {
     while (window.isOpen()) {
+        deltaTime = deltaClock.restart();
         handleEvents();
         render();
     }
@@ -29,24 +30,25 @@ void Application::handleEvents() {
                 break;
             }
         }
+    }
 
-        // Handle user input, must be seperate if statements to allow more than
-        // one action to be processed at a time
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
-            leftPaddle.move(Direction::Up);
-        }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
-            leftPaddle.move(Direction::Down);
-        }
+    // Handle user input, must be seperate if statements to allow more than
+    // one action to be processed at a time
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
+        leftPaddle.move(Direction::Up, deltaTime);
+    }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-            rightPaddle.move(Direction::Up);
-        }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
+        leftPaddle.move(Direction::Down, deltaTime);
+    }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
-            rightPaddle.move(Direction::Down);
-        }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
+        rightPaddle.move(Direction::Up, deltaTime);
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
+        rightPaddle.move(Direction::Down, deltaTime);
     }
 }
 
