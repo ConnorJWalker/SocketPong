@@ -6,6 +6,7 @@ Ball::Ball(sf::Vector2u windowSize) {
 }
 
 void Ball::init() {
+    velocity.y = 0.f;
     body.setRadius(radius);
     body.setPosition(windowSize.x / 2, windowSize.y / 2);
 }
@@ -25,6 +26,7 @@ void Ball::checkAndUpdateDirection(Paddle leftPaddle, Paddle rightPaddle) {
            
             if (ballPosition.y > paddleEdge.y - paddleHeight / 2 && ballPosition.y < paddleEdge.y + paddleHeight / 2) {
                 velocity.x *= -1;
+                calculateYVelocity(leftPaddle);
             }
         }
     }
@@ -40,9 +42,15 @@ void Ball::checkAndUpdateDirection(Paddle leftPaddle, Paddle rightPaddle) {
 
             if (ballPosition.y > paddleEdge.y - paddleHeight / 2 && ballPosition.y < paddleEdge.y + paddleHeight / 2) { 
                 velocity.x *= -1;
+                calculateYVelocity(rightPaddle);
             }
         }
     }
+}
+
+void Ball::calculateYVelocity(Paddle paddle) {
+    float yDifference = paddle.getPaddleEdge().y - body.getPosition().y;
+    velocity.y = -(yDifference) * 4.28f;
 }
 
 void Ball::move(sf::Time deltaTime, Paddle leftPaddle, Paddle rightPaddle) {
