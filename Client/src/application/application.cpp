@@ -1,8 +1,10 @@
 #include "application.h"
 
-Application::Application() : window(sf::VideoMode(720, 480), "Pong", sf::Style::Close),
+Application::Application() : 
+    window(sf::VideoMode(720, 480), "Pong", sf::Style::Close),
     leftPaddle(PaddleSide::Left, window.getSize()),
-    rightPaddle(PaddleSide::Right, window.getSize()) {}
+    rightPaddle(PaddleSide::Right, window.getSize()),
+    ui(&leftScore, &rightScore, window.getSize()) {}
 
 void Application::run() {
     while (window.isOpen()) {
@@ -53,6 +55,7 @@ void Application::render() {
     
     leftPaddle.render(window);
     rightPaddle.render(window);
+    ui.render(window);
 
     window.display();
 }
