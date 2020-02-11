@@ -11,6 +11,13 @@ void Ball::init() {
     body.setPosition(windowSize.x / 2, windowSize.y / 2);
 }
 
+void Ball::checkYBoundries() {
+    float ballY = body.getPosition().y;
+    if (ballY + radius >= windowSize.y || ballY - radius <= 0) {
+        velocity.y = -(velocity.y);
+    }
+}
+
 void Ball::checkAndUpdateDirection(Paddle leftPaddle, Paddle rightPaddle) {
     sf::Vector2f ballPosition = body.getPosition();
     float paddleHeight = leftPaddle.size.y;
@@ -57,6 +64,7 @@ void Ball::move(sf::Time deltaTime, Paddle leftPaddle, Paddle rightPaddle) {
     body.move(velocity * deltaTime.asSeconds());
 
     checkAndUpdateDirection(leftPaddle, rightPaddle);
+    checkYBoundries();
 }
 
 void Ball::render(sf::RenderWindow& window) {

@@ -21,6 +21,7 @@ private:
 // Methods
 private:
     void checkAndUpdateDirection(Paddle leftPaddle, Paddle rightPaddle);
+    void checkYBoundries();
     void calculateYVelocity(Paddle paddle);
 
     void init();
