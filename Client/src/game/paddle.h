@@ -16,9 +16,11 @@ private:
     sf::RectangleShape body;
 
     const float velocity = 300.f;
-    const sf::Vector2f size = sf::Vector2f(15.f, 100.f);
 
     unsigned int maxY;
+    
+public:
+    const sf::Vector2f size = sf::Vector2f(15.f, 100.f);
 
 // Methods
 private:

@@ -2,24 +2,32 @@
 
 Ball::Ball(sf::Vector2u windowSize) {
     this->windowSize = windowSize;
+    
     body.setRadius(radius);
     body.setPosition(windowSize.x / 2, windowSize.y / 2);
 }
 
 void Ball::checkAndUpdateDirection(Paddle leftPaddle, Paddle rightPaddle) {
     sf::Vector2f ballPosition = body.getPosition();
+    float paddleHeight = leftPaddle.size.y;
 
     // Check to see if the ball has hit the left paddle
     if (ballPosition.x < windowSize.x / 2) {
-        if (ballPosition.x - radius <= leftPaddle.getPaddleEdge().x) {
-            velocity.x *= -1;
+        sf::Vector2f paddleEdge = leftPaddle.getPaddleEdge();
+        if (ballPosition.x - radius <= paddleEdge.x) {
+            if (ballPosition.y > paddleEdge.y - paddleHeight / 2 && ballPosition.y < paddleEdge.y + paddleHeight / 2) {
+                velocity.x *= -1;
+            }
         }
     }
 
     // Check to see if the ball has hit the right paddle
     if (ballPosition.x > windowSize.x / 2) {
-        if (ballPosition.x + radius >= rightPaddle.getPaddleEdge().x) {
-            velocity.x *= -1;
+        sf::Vector2f paddleEdge = rightPaddle.getPaddleEdge();
+        if (ballPosition.x + radius >= paddleEdge.x) {
+            if (ballPosition.y > paddleEdge.y - paddleHeight / 2 && ballPosition.y < paddleEdge.y + paddleHeight / 2) { 
+                velocity.x *= -1;
+            }
         }
     }
 }
