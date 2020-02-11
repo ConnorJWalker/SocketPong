@@ -4,13 +4,15 @@ Application::Application() :
     window(sf::VideoMode(720, 480), "Pong", sf::Style::Close),
     leftPaddle(PaddleSide::Left, window.getSize()),
     rightPaddle(PaddleSide::Right, window.getSize()),
-    ui(&leftScore, &rightScore, &fps, window.getSize()) {}
+    ui(&leftScore, &rightScore, &fps, window.getSize()),
+    ball(window.getSize()) {}
 
 void Application::run() {
     while (window.isOpen()) {
         deltaTime = deltaClock.restart();
         
         handleEvents();
+        ball.move(deltaTime);
         render();
 
         fps = 1.f / deltaTime.asSeconds();
@@ -64,6 +66,7 @@ void Application::render() {
     leftPaddle.render(window);
     rightPaddle.render(window);
     ui.render(window, showFramerate);
+    ball.render(window);
 
     window.display();
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "ui/ui.h"
+#include "../game/ball.h"
 #include "../game/paddle.h"
 #include <SFML/Graphics.hpp>
 
@@ -9,6 +10,7 @@ private:
     sf::RenderWindow window;
     Paddle leftPaddle;
     Paddle rightPaddle;
+    Ball ball;
 
     UI ui;
 
