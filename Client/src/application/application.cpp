@@ -12,7 +12,16 @@ void Application::run() {
         deltaTime = deltaClock.restart();
         
         handleEvents();
+
         ball.move(deltaTime, leftPaddle, rightPaddle);
+        ScoringSide currentScorer = ball.hasScored();
+        if (currentScorer != ScoringSide::None) {
+            if (currentScorer == ScoringSide::Left)
+                leftScore++;
+            else
+                rightScore++;
+        }
+
         render();
 
         fps = 1.f / deltaTime.asSeconds();

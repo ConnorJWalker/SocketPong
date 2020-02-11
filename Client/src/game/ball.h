@@ -16,9 +16,12 @@ private:
 
     sf::Vector2f velocity = sf::Vector2f(-300.f, 0.f);
 
+    ScoringSide lastScore = ScoringSide::None;
+
 // Methods
 private:
     void checkAndUpdateDirection(Paddle leftPaddle, Paddle rightPaddle);
+    void init();
 
 public:
     Ball(sf::Vector2u windowSize);
