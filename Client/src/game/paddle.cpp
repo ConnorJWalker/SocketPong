@@ -29,3 +29,11 @@ void Paddle::move(Direction direction, sf::Time deltaTime) {
         body.move(0.f, (float)direction * velocity * deltaTime.asSeconds());
     }
 }
+
+sf::Vector2f Paddle::getPaddleEdge() {
+    sf::Vector2f position = body.getPosition();
+
+    return side == PaddleSide::Left ?
+        sf::Vector2f(position.x + size.x / 2, position.y):
+        sf::Vector2f(position.x - size.x / 2, position.y);
+}

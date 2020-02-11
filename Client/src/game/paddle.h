@@ -28,4 +28,5 @@ public:
     Paddle(PaddleSide side, sf::Vector2u windowSize);
     void render(sf::RenderWindow& window);
     void move(Direction direction, sf::Time deltaTime);
+    sf::Vector2f getPaddleEdge();
 };

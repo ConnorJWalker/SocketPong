@@ -12,7 +12,7 @@ void Application::run() {
         deltaTime = deltaClock.restart();
         
         handleEvents();
-        ball.move(deltaTime);
+        ball.move(deltaTime, leftPaddle, rightPaddle);
         render();
 
         fps = 1.f / deltaTime.asSeconds();
